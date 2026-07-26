@@ -1,3 +1,27 @@
+const SUPABASE_URL = "ここにProject URL";
+const SUPABASE_KEY = "ここにPublishable key";
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+async function checkLogin() {
+
+    const {
+        data: { session }
+    } = await supabaseClient.auth.getSession();
+
+    if (!session) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    console.log("ログイン中:", session.user.email);
+}
+
+checkLogin();
+
 const storageKeys = {
     matches: 'practiceApp_matches',
     tasks: 'practiceApp_tasks',
