@@ -114,8 +114,20 @@ const winrateChart = new Chart(ctx, {
 });
 
 function showSection(sectionId) {
-    sections.forEach(section => section.classList.toggle('active', section.id === sectionId));
-    tabButtons.forEach(button => button.classList.toggle('active', button.dataset.section === sectionId));
+    sections.forEach(section => {
+        if (section.id === sectionId) {
+            section.classList.add('active');
+        } else {
+            section.classList.remove('active');
+        }
+    });
+    tabButtons.forEach(button => {
+        if (button.dataset.section === sectionId) {
+            button.classList.add('active');
+        } else {
+            button.classList.remove('active');
+        }
+    });
 }
 
 function loadStorage(key) {
