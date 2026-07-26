@@ -1,9 +1,11 @@
-const SUPABASE_URL = 'https://csytpjewmhknhcxuhfes.supabase.co/rest/v1/';
-const SUPABASE_ANON_KEY = 'sb_publishable_4TdUVL7OG0kDlKTgjmIzcA_s1BXVSlR';
+const SUPABASE_URL = 'https://csytpjewmhknhcxuhfes.supabase.co';
+
+const SUPABASE_ANON_KEY =
+    'sb_publishable_4TdUVL7OG0kDlKTgjmIzcA_s1BXVSlR';
 
 const supabaseClient = supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_KEY
+    SUPABASE_ANON_KEY
 );
 
 const loginForm = document.getElementById("loginForm");
@@ -26,7 +28,8 @@ loginForm.addEventListener("submit", async (event) => {
 
     if (error) {
         console.error(error);
-        message.textContent = "メールアドレスまたはパスワードが間違っています。";
+        message.textContent =
+            "メールアドレスまたはパスワードが間違っています。";
         return;
     }
 
