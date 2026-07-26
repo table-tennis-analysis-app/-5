@@ -369,11 +369,51 @@ function updateMatchTask(matchId, note, date, format = 'single') {
     saveStorage(storageKeys.tasks, tasks);
 }
 
-function init() {
-    matches = loadStorage(storageKeys.matches);
+async function loadMatchesFromSupabase() {
+    const {
+        data: { user }
+    } = await supabaseClient.auth.getUser();
+
+    if (!user) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    const { data, error } = await supabaseClient
+        .from("matches")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("id", { ascending: true });
+
+    if (error) {
+        console.error("試合データ取得エラー:", error);
+        return;
+    }
+
+    matches = data.map(match => ({
+        id: match.id,
+        date: match.date || "",
+        opponentSchool: match.opponent_school || "",
+        opponentName: match.opponent_name || "",
+        rubberType: match.rubber_type || "",
+        result: match.result || "win",
+        format: match.format || "single",
+        doubleRubberTypes: match.double_rubber_types || null,
+        totalSets: match.total_sets || "",
+        pointScore: match.point_score || "",
+        note: match.note || ""
+    }));
+
+    refreshAll();
+} 
+
+async function init() {
+    await loadMatchesFromSupabase();
+
     tasks = loadStorage(storageKeys.tasks);
     memos = loadStorage(storageKeys.memos);
     practicePlans = loadStorage(storageKeys.practice);
+
     refreshAll();
 }
 
@@ -553,6 +593,7 @@ document.getElementById("logoutButton")
 
         window.location.href = "login.html";
     });
+
 
 init();
 
