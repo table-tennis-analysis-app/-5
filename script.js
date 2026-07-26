@@ -1,14 +1,14 @@
-const SUPABASE_URL = 'https://csytpjewmhknhcxuhfes.supabase.co';
+const SUPABASE_URL = "https://csytpjewmhknhcxuhfes.supabase.co";
 
-const SUPABASE_ANON_KEY =
-    'sb_publishable_4TdUVL7OG0kDlKTgjmIzcA_s1BXVSlR';
+const SUPABASE_KEY =
+    "sb_publishable_4TdUVL7OG0kDlKTgjmIzcA_s1BXVSlR";
 
 const supabaseClient = supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_ANON_KEY
+    SUPABASE_KEY
 );
-async function checkLogin() {
 
+async function checkLogin() {
     const {
         data: { session }
     } = await supabaseClient.auth.getSession();
