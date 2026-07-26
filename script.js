@@ -608,6 +608,3 @@ document.getElementById("logoutButton")
 
 
 init();
-
-
-
