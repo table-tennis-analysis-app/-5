@@ -1,11 +1,12 @@
-const SUPABASE_URL = "ここにProject URL";
-const SUPABASE_KEY = "ここにPublishable key";
+const SUPABASE_URL = 'https://csytpjewmhknhcxuhfes.supabase.co';
+
+const SUPABASE_ANON_KEY =
+    'sb_publishable_4TdUVL7OG0kDlKTgjmIzcA_s1BXVSlR';
 
 const supabaseClient = supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_KEY
+    SUPABASE_ANON_KEY
 );
-
 async function checkLogin() {
 
     const {
