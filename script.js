@@ -516,8 +516,7 @@ matchCancelButton.addEventListener('click', resetMatchForm);
 memoCancelButton.addEventListener('click', resetMemoForm);
 practiceCancelButton.addEventListener('click', resetPracticeForm);
 
-const SUPABASE_URL = 'https://csytpjewmhknhcxuhfes.supabase.co/rest/v1/';
-const SUPABASE_ANON_KEY = 'sb_publishable_4TdUVL7OG0kDlKTgjmIzcA_s1BXVSlR';
+
 init();
 
 
