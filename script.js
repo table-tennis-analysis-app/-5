@@ -541,6 +541,18 @@ matchCancelButton.addEventListener('click', resetMatchForm);
 memoCancelButton.addEventListener('click', resetMemoForm);
 practiceCancelButton.addEventListener('click', resetPracticeForm);
 
+document.getElementById("logoutButton")
+    .addEventListener("click", async () => {
+
+        const { error } = await supabaseClient.auth.signOut();
+
+        if (error) {
+            console.error(error);
+            return;
+        }
+
+        window.location.href = "login.html";
+    });
 
 init();
 
